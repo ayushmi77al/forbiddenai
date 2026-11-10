@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { InquireSoonLink, PageFrame, StudioMeta } from "@/components/PageIntro";
 import { SectionRule } from "@/components/SectionRule";
@@ -5,9 +6,97 @@ import { SlashMark } from "@/components/SlashMark";
 import { Wordmark } from "@/components/Wordmark";
 import { approachSteps, practices, site } from "@/lib/site";
 
+export const metadata: Metadata = {
+  title: `${site.name} — ${site.tagline}`,
+  keywords: [
+    "Forbidden AI",
+    "ERD Forge",
+    "Database schema designer",
+    "ERD tool",
+    "Software studio",
+    "AI engineering",
+  ],
+};
+
+const homepageJsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": `${site.url}/#organization`,
+      name: site.name,
+      legalName: site.legalName,
+      url: site.url,
+      logo: {
+        "@type": "ImageObject",
+        url: `${site.url}/logos/forbidden-ai-logo-white.png`,
+        width: 400,
+        height: 100,
+      },
+      description: site.description,
+      knowsAbout: [
+        "Database Schema Design",
+        "Entity Relationship Diagrams",
+        "ERD Forge",
+        "AI Engineering & Integrations",
+        "Software Architecture & Consulting",
+      ],
+      keywords: "Forbidden AI, ERD Forge, Database Schema Designer, ERD Tool, AI Studio",
+      address: {
+        "@type": "PostalAddress",
+        addressCountry: "IN",
+        addressRegion: "India",
+      },
+      contactPoint: {
+        "@type": "ContactPoint",
+        contactType: "customer support",
+        url: `${site.url}/contact`,
+      },
+      sameAs: [
+        "https://github.com/fobiddenai",
+      ],
+      hasOfferCatalog: {
+        "@type": "OfferCatalog",
+        name: "Software & Developer Tools",
+        itemListElement: [
+          {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "SoftwareApplication",
+              name: "ERD Forge",
+              url: `${site.url}/tools/erd-forge`,
+              description: "Free, local-first browser-based database schema designer and ERD modeling tool.",
+              applicationCategory: "DeveloperApplication",
+              operatingSystem: "Web Browser",
+              offers: {
+                "@type": "Offer",
+                price: "0",
+                priceCurrency: "USD",
+              },
+            },
+          },
+        ],
+      },
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${site.url}/#website`,
+      url: site.url,
+      name: site.name,
+      description: site.description,
+      publisher: { "@id": `${site.url}/#organization` },
+    },
+  ],
+};
+
 export default function HomePage() {
   return (
-    <PageFrame>
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(homepageJsonLd) }}
+      />
+      <PageFrame>
       <section className="relative min-h-[70vh] pt-2 md:pt-4">
         <SlashMark className="pointer-events-none absolute -top-4 -right-10 w-[min(72vw,34rem)] text-white/8 md:-top-2 md:right-[4%]" />
         <div className="animate-fade-in-up">
@@ -158,5 +247,6 @@ export default function HomePage() {
         </p>
       </section>
     </PageFrame>
+    </>
   );
 }

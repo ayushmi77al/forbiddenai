@@ -1,7 +1,7 @@
 export const site = {
   name: "Forbidden AI",
   legalName: "ForbiddenAI",
-  url: "https://forbiddenai.in",
+  url: "https://www.forbiddenai.in",
   location: "India · working worldwide",
   tagline: "We keep the useful parts. The rest stays forbidden.",
   lede: "Software, consulting, and AI — built in India, shipped worldwide.",

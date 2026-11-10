@@ -24,6 +24,12 @@ export function SiteFooter() {
               {item.label}
             </Link>
           ))}
+          <Link
+            href="/privacy"
+            className="transition-all duration-300 ease-out hover:text-white"
+          >
+            Privacy
+          </Link>
         </nav>
         <p className="font-mono text-[0.7rem] text-white/35">
           © {new Date().getFullYear()} {site.legalName}
